@@ -69,16 +69,21 @@ posts.forEach((singlePost) => {
     container.innerHTML += postTemplate;
 })
 
+const likedPosts = []
+
 const allBtn = document.querySelectorAll('.js-like-button')
 allBtn.forEach((btnDOM) => {
     btnDOM.addEventListener('click', function(){
-        
         const postId = this.dataset.postid;
         const relatedLikesCounter = document.querySelector('#like-counter-' + postId)
         relatedLikesCounter.innerHTML = parseInt(relatedLikesCounter.innerHTML) + 1
         btnDOM.classList.add('like-button--liked')
+        if (!likedPosts.includes(postId)){
+            likedPosts.push(postId)
+        }
     })
 })
+
 
 // FUNZIONI
 function generateSinglePostTemplate(postObject){
